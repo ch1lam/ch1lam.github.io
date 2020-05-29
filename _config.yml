@@ -100,5 +100,5 @@ theme: fluid
 deploy:
   type: git
   repo:
-    github: https://github.com/ch1lamLee/ch1lamLee.github.io.git
+    github: https://github.com/ch1lam/ch1lam.github.io.git
   branch: master
