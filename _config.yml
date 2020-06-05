@@ -41,7 +41,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true # 生成文章同名文件夹存放资源文件
 relative_link: false
 future: true
 highlight:
