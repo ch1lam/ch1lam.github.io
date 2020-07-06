@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>CentOS 7更新git版本</title>
+    <link href="/2020/07/06/CentOS%207%E6%9B%B4%E6%96%B0git%E7%89%88%E6%9C%AC/"/>
+    <url>/2020/07/06/CentOS%207%E6%9B%B4%E6%96%B0git%E7%89%88%E6%9C%AC/</url>
+    
+    <content type="html"><![CDATA[<p>CentOS 7 默认 git 版本是 1.8，通过源码编译更新 git 版本</p><a id="more"></a><h1 id="升级-git-版本"><a href="#升级-git-版本" class="headerlink" title="升级 git 版本"></a>升级 git 版本</h1><p>由于 CentOS 7 默认的 repo 和 git 官网都没有提供 rpm，那么只有两种方法，1. 通过源码编译，2. 使用第三方的 rpm，这里使用第一种方法。</p><h2 id="1-卸载原有的-git"><a href="#1-卸载原有的-git" class="headerlink" title="1. 卸载原有的 git"></a>1. 卸载原有的 git</h2><pre><code class="hljs bash">yum remove git</code></pre><h2 id="2-安装相关依赖"><a href="#2-安装相关依赖" class="headerlink" title="2. 安装相关依赖"></a>2. 安装相关依赖</h2><pre><code class="hljs bash">yum -y install zlib-devel curl-devel openssl-devel perl cpio expat-devel gettext-devel openssl zlib autoconf tk perl-ExtUtils-MakeMaker</code></pre><h2 id="3-获取最新的-git-源码包"><a href="#3-获取最新的-git-源码包" class="headerlink" title="3. 获取最新的 git 源码包"></a>3. 获取最新的 git 源码包</h2><p>从<a href="https://link.jianshu.com/?t=https://github.com/git/git/releases" target="_blank" rel="noopener">repo</a>中下载最新稳定版的 zip 包或者 tar.gz 并解压。<br>以 tar.gz 格式为例（在网页的 tar.gz 上右键复制下载链接即可）</p><pre><code class="hljs bash">wget https://github.com/git/git/archive/v2.27.0.tar.gztar zxvf v2.27.0.tar.gz</code></pre><p>解压后得到一个 git-2.27.0 的目录（版本号与下载的一致），然后进入目录</p><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> git-2.27.0</code></pre><h2 id="4-编译安装"><a href="#4-编译安装" class="headerlink" title="4. 编译安装"></a>4. 编译安装</h2><pre><code class="hljs bash">autoconf./configuremakemake install</code></pre><p>以上 4 步请一步步来，以免出现错误不好找原因。</p><h2 id="5-添加到环境变量中"><a href="#5-添加到环境变量中" class="headerlink" title="5. 添加到环境变量中"></a>5. 添加到环境变量中</h2><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">"export PATH=<span class="hljs-variable">$PATH</span>:/usr/local/git/bin"</span> &gt;&gt; /etc/profile &amp;&amp; <span class="hljs-built_in">source</span> /etc/profile</code></pre><h2 id="6-查看当前-git-版本"><a href="#6-查看当前-git-版本" class="headerlink" title="6.查看当前 git 版本"></a>6.查看当前 git 版本</h2><pre><code class="hljs bash">git --version</code></pre><h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul><li><a href="https://www.jianshu.com/p/cae9a3b02d9d" target="_blank" rel="noopener">CentOS 7 升级 Git</a></li><li><a href="https://juejin.im/post/5dae627751882568a71eed5d" target="_blank" rel="noopener">Centos7 升级 Git 版本</a></li></ul>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>博客功能测试</title>
     <link href="/2020/05/27/%E5%8D%9A%E5%AE%A2%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
     <url>/2020/05/27/%E5%8D%9A%E5%AE%A2%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/</url>
