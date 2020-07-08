@@ -2,9 +2,9 @@
 title: CentOS 7更新git版本
 date: 2020-07-06 22:14:21
 index_img: /img/CentOS 7更新git版本.jpg
-tags:
+tags: [Linux, CentOS, Git]
+categories: [教程, VPS常见问题]
 ---
-
 
 CentOS 7 默认 git 版本是 1.8，通过源码编译更新 git 版本
 
