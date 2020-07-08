@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/atom-one-dark-reasonable.min.css" />
   
 
   
@@ -216,7 +216,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年7月6日 晚上
+                  本文最后更新于：2020年7月9日 凌晨
                 
               </p>
             
@@ -224,20 +224,20 @@
               <p>CentOS 7 默认 git 版本是 1.8，通过源码编译更新 git 版本</p>
 <a id="more"></a>
 <h1 id="升级-git-版本"><a href="#升级-git-版本" class="headerlink" title="升级 git 版本"></a>升级 git 版本</h1><p>由于 CentOS 7 默认的 repo 和 git 官网都没有提供 rpm，那么只有两种方法，1. 通过源码编译，2. 使用第三方的 rpm，这里使用第一种方法。</p>
-<h2 id="1-卸载原有的-git"><a href="#1-卸载原有的-git" class="headerlink" title="1. 卸载原有的 git"></a>1. 卸载原有的 git</h2><pre><code class="hljs bash">yum remove git</code></pre>
-<h2 id="2-安装相关依赖"><a href="#2-安装相关依赖" class="headerlink" title="2. 安装相关依赖"></a>2. 安装相关依赖</h2><pre><code class="hljs bash">yum -y install zlib-devel curl-devel openssl-devel perl cpio expat-devel gettext-devel openssl zlib autoconf tk perl-ExtUtils-MakeMaker</code></pre>
+<h2 id="1-卸载原有的-git"><a href="#1-卸载原有的-git" class="headerlink" title="1. 卸载原有的 git"></a>1. 卸载原有的 git</h2><div class="hljs"><pre><code class="hljs bash">yum remove git</code></pre></div>
+<h2 id="2-安装相关依赖"><a href="#2-安装相关依赖" class="headerlink" title="2. 安装相关依赖"></a>2. 安装相关依赖</h2><div class="hljs"><pre><code class="hljs bash">yum -y install zlib-devel curl-devel openssl-devel perl cpio expat-devel gettext-devel openssl zlib autoconf tk perl-ExtUtils-MakeMaker</code></pre></div>
 <h2 id="3-获取最新的-git-源码包"><a href="#3-获取最新的-git-源码包" class="headerlink" title="3. 获取最新的 git 源码包"></a>3. 获取最新的 git 源码包</h2><p>从<a href="https://link.jianshu.com/?t=https://github.com/git/git/releases" target="_blank" rel="noopener">repo</a>中下载最新稳定版的 zip 包或者 tar.gz 并解压。<br>以 tar.gz 格式为例（在网页的 tar.gz 上右键复制下载链接即可）</p>
-<pre><code class="hljs bash">wget https://github.com/git/git/archive/v2.27.0.tar.gz
-tar zxvf v2.27.0.tar.gz</code></pre>
+<div class="hljs"><pre><code class="hljs bash">wget https://github.com/git/git/archive/v2.27.0.tar.gz
+tar zxvf v2.27.0.tar.gz</code></pre></div>
 <p>解压后得到一个 git-2.27.0 的目录（版本号与下载的一致），然后进入目录</p>
-<pre><code class="hljs bash"><span class="hljs-built_in">cd</span> git-2.27.0</code></pre>
-<h2 id="4-编译安装"><a href="#4-编译安装" class="headerlink" title="4. 编译安装"></a>4. 编译安装</h2><pre><code class="hljs bash">autoconf
+<div class="hljs"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> git-2.27.0</code></pre></div>
+<h2 id="4-编译安装"><a href="#4-编译安装" class="headerlink" title="4. 编译安装"></a>4. 编译安装</h2><div class="hljs"><pre><code class="hljs bash">autoconf
 ./configure
 make
-make install</code></pre>
+make install</code></pre></div>
 <p>以上 4 步请一步步来，以免出现错误不好找原因。</p>
-<h2 id="5-添加到环境变量中"><a href="#5-添加到环境变量中" class="headerlink" title="5. 添加到环境变量中"></a>5. 添加到环境变量中</h2><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">"export PATH=<span class="hljs-variable">$PATH</span>:/usr/local/git/bin"</span> &gt;&gt; /etc/profile &amp;&amp; <span class="hljs-built_in">source</span> /etc/profile</code></pre>
-<h2 id="6-查看当前-git-版本"><a href="#6-查看当前-git-版本" class="headerlink" title="6.查看当前 git 版本"></a>6.查看当前 git 版本</h2><pre><code class="hljs bash">git --version</code></pre>
+<h2 id="5-添加到环境变量中"><a href="#5-添加到环境变量中" class="headerlink" title="5. 添加到环境变量中"></a>5. 添加到环境变量中</h2><div class="hljs"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">"export PATH=<span class="hljs-variable">$PATH</span>:/usr/local/git/bin"</span> &gt;&gt; /etc/profile &amp;&amp; <span class="hljs-built_in">source</span> /etc/profile</code></pre></div>
+<h2 id="6-查看当前-git-版本"><a href="#6-查看当前-git-版本" class="headerlink" title="6.查看当前 git 版本"></a>6.查看当前 git 版本</h2><div class="hljs"><pre><code class="hljs bash">git --version</code></pre></div>
 <h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
 <li><a href="https://www.jianshu.com/p/cae9a3b02d9d" target="_blank" rel="noopener">CentOS 7 升级 Git</a></li>
 <li><a href="https://juejin.im/post/5dae627751882568a71eed5d" target="_blank" rel="noopener">Centos7 升级 Git 版本</a></li>
@@ -248,6 +248,26 @@ make install</code></pre>
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%99%E7%A8%8B/">教程</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%99%E7%A8%8B/VPS%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">VPS常见问题</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
+                    
+                      <a class="hover-with-bg" href="/tags/CentOS/">CentOS</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Git/">Git</a>
+                    
+                  </div>
                 
               </div>
               
@@ -610,7 +630,7 @@ make install</code></pre>
         "CentOS 7更新git版本&nbsp;",
       ],
       cursorChar: "_",
-      typeSpeed: 70,
+      typeSpeed: 60,
       loop: false,
     });
     typed.stop();
