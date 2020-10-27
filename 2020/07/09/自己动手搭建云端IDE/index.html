@@ -17,10 +17,19 @@
   <meta name="description" content="">
   <meta name="author" content="chilam">
   <meta name="keywords" content="">
-  <title>分类 - Tach</title>
+  <title>自己动手搭建云端IDE - Tach</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/atom-one-dark-reasonable.min.css" />
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -151,6 +160,40 @@
             </span>
 
             
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-07-09 15:50">
+      2020年7月9日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      785 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      9
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
           </div>
 
           
@@ -161,134 +204,109 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+              <p class="note note-info">
                 
+                  本文最后更新于：2020年10月27日 下午
+                
+              </p>
+            
+            <article class="markdown-body">
+              <p>基于 code-server 搭建一个云端 VS Code，随时随地在浏览器上 Coding</p>
+<a id="more"></a>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>最近突然想试 <a href="https://github.com/features/codespaces" target="_blank" rel="noopener">GitHub Codespaces</a>，无奈测试资格永远在等待。<a href="https://visualstudio.microsoft.com/zh-hans/services/visual-studio-codespaces/" target="_blank" rel="noopener">Visual Studio Codespaces</a>(原 Visual Studio Online)需要付费。<a href="https://coding.net/products/cloudstudio" target="_blank" rel="noopener">Coding</a>以前用过还是类似 Idea 的版本，现在变成类似 vscode 的样子，应该还是不错的<del>（我选择 GitHub Codespaces）</del>。</p>
+<p>偶然情况下我发现了开源的 <a href="https://github.com/cdr/code-server" target="_blank" rel="noopener">cdr/code-server</a>，只需拥有一台自己的服务器即可实现属于自己的云端 IDE。</p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><h3 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h3><p>我用的是阿里云的学生鸡（1 核 2G，2G 内存，40G 硬盘，1M 带宽）</p>
+<h3 id="下载-tar-gz"><a href="#下载-tar-gz" class="headerlink" title="下载 tar.gz"></a>下载 tar.gz</h3><blockquote>
+<p>国外或港澳台地区的 vps 可以跳过这一步</p>
+</blockquote>
+<p><a href="https://github.com/cdr/code-server/releases" target="_blank" rel="noopener">下载最新版的 code server 文件</a>，如<code>code-server-3.4.1-linux-x86_64.tar.gz</code></p>
+<h2 id="开始搭建"><a href="#开始搭建" class="headerlink" title="开始搭建"></a>开始搭建</h2><h3 id="1-登陆-vps"><a href="#1-登陆-vps" class="headerlink" title="1.登陆 vps"></a>1.登陆 vps</h3><p>通过 SSH 远程连接服务器或 VNC 登陆</p>
+<h3 id="2-上传-tar-gz"><a href="#2-上传-tar-gz" class="headerlink" title="2.上传 tar.gz"></a>2.上传 tar.gz</h3><p>各显神通的环节，sftp、pscp…… 我是直接在宝塔面板上传的。</p>
+<p>国外或港澳台地区的 vps 直接执行以下代码下载 tar.gz（版本号自行修改成最新版本）</p>
+<div class="hljs"><pre><code class="hljs bash">wget https://github.com/cdr/code-server/releases/download/3.4.1/code-server-3.4.1-linux-x86_64.tar.gz</code></pre></div>
+<h3 id="3-解压-tar-gz"><a href="#3-解压-tar-gz" class="headerlink" title="3.解压 tar.gz"></a>3.解压 tar.gz</h3><div class="hljs"><pre><code class="hljs bash">tar xf code-server-3.4.1-linux-x86_64.tar.gz</code></pre></div>
+<h3 id="3-安装配置"><a href="#3-安装配置" class="headerlink" title="3.安装配置"></a>3.安装配置</h3><div class="hljs"><pre><code class="hljs bash"><span class="hljs-comment"># 进入解压后的目录</span>
+<span class="hljs-built_in">cd</span> code-server-3.1.1-linux-x86_64
+<span class="hljs-comment"># 设置一个登陆密码</span>
+<span class="hljs-built_in">export</span> PASSWORD=<span class="hljs-string">"mypassowrd"</span>
+<span class="hljs-comment"># 由于code-server默认只能够监听本地地址，也就是 127.0.0.1</span>
+<span class="hljs-comment"># 指定监听地址、监听端口并执行code-server</span>
+./code-server --host 0.0.0.0 --port 8080</code></pre></div>
+<h3 id="4-服务器防火墙配置"><a href="#4-服务器防火墙配置" class="headerlink" title="4.服务器防火墙配置"></a>4.服务器防火墙配置</h3><p>进入阿里云<strong>实例安全组</strong>，将 8080 端口打开。</p>
+<h3 id="5-测试"><a href="#5-测试" class="headerlink" title="5.测试"></a>5.测试</h3><p>在浏览器中输入 {<strong>服务器 IP 地址</strong>}:{<strong>code-server 端口</strong>}，并输入刚才设置的密码，进入属于自己的云端 vscode</p>
+<p>安装 vscode 常用插件，如简体中文语言包等。</p>
+<h2 id="One-more-thing"><a href="#One-more-thing" class="headerlink" title="One more thing"></a>One more thing</h2><p>由于在 Safari 浏览器中使用体验比较糟糕，因此通过一款专门为iPad优化的ios应用<a href="https://servediter.app/" target="_blank" rel="noopener">Servediter(原 VSApp)</a>来实现在iPad上流畅的云端IDE体验。</p>
+<p>servediter分为付费和免费，搭建在自己服务器上的code server只需要使用免费服务即可。</p>
+<h3 id="登陆配置"><a href="#登陆配置" class="headerlink" title="登陆配置"></a>登陆配置</h3><p>直接选择菜单中的 <strong>Self Hosted Server</strong>，然后根据要求填写刚才部署的code-server相关信息。</p>
+<p><img src="servediter配置.jpg" srcset="/img/loading.gif" alt="servediter配置.jpg"></p>
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><img src="servediter效果.jpg" srcset="/img/loading.gif" alt="servediter效果.jpg"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在配合servediter使用的条件下，延迟问题不严重。我认为最大的问题还是受制于vps的性能。在和同类产品对比的情况下，code-server的生产力属性相对逊色，我更倾向于把他当成多平台的笔记类应用，支持vscode的大部分插件、使用自己的vps保障了隐私、用浏览器就能登录使用也足够方便。而如果用于编程，我觉得有点南辕北辙，毕竟专业的事交给更专业的工具去做更好。</p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><a href="https://brief-rf.gitee.io/code-server/" target="_blank" rel="noopener">搭建自己的云端 IDE</a></li>
+<li><a href="https://sspai.com/post/60456" target="_blank" rel="noopener">为 iPad 部署基于 VS Code 的远程开发环境</a></li>
+<li><a href="https://www.bilibili.com/video/BV1Zz411i7rp/" target="_blank" rel="noopener">【编程】云端 IDE 介绍与搭建教程｜｜新的编程方式增加了！</a></li>
+</ul>
 
-
-
-
-
-
-
-<div class="category-list">
-  
-  
-  
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item  list-group-item category-item-action col-10 col-md-11"
-        id="heading-教程" role="tab" data-toggle="collapse" href="#collapse-教程"
-        aria-expanded="true"
-      >
-        教程
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/%E6%95%99%E7%A8%8B/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse">
-        
-          
-  <div id="collapse-教程" class="collapse in show" role="tabpanel"
-       aria-labelledby="heading-教程">
-    
-  
-  
-    
-    
-    <div class="category-sub row">
-      <a
-        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-VPS常见问题" role="tab" data-toggle="collapse" href="#collapse-VPS常见问题"
-        aria-expanded="false"
-      >
-        VPS常见问题
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/%E6%95%99%E7%A8%8B/VPS%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse">
-        
-          
-  <div id="collapse-VPS常见问题" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-VPS常见问题">
-    
-    
-    
-      
-      
-        <a href="/2020/07/06/CentOS%207%E6%9B%B4%E6%96%B0git%E7%89%88%E6%9C%AC/" class="list-group-item list-group-item-action">
-          <span class="category-post">CentOS 7更新git版本</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-博客技术" role="tab" data-toggle="collapse" href="#collapse-博客技术"
-        aria-expanded="false"
-      >
-        博客技术
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/%E5%8D%9A%E5%AE%A2%E6%8A%80%E6%9C%AF/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse">
-        
-          
-  <div id="collapse-博客技术" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-博客技术">
-    
-    
-    
-      
-      
-        <a href="/2020/05/27/%E5%8D%9A%E5%AE%A2%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/" class="list-group-item list-group-item-action">
-          <span class="category-post">博客功能测试</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-</div>
-
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
               </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/06/CentOS%207%E6%9B%B4%E6%96%B0git%E7%89%88%E6%9C%AC/">
+                        <span class="hidden-mobile">CentOS 7更新git版本</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
             </div>
+
+            
           </div>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -506,10 +524,10 @@
       }
 
       // 如果是文章，请求文章的浏览数，并自增
-      if ('false' === 'true') {
+      if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/categories/index.html');
+          var target = decodeURI('/2020/07/09/%E8%87%AA%E5%B7%B1%E5%8A%A8%E6%89%8B%E6%90%AD%E5%BB%BA%E4%BA%91%E7%AB%AFIDE/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -571,6 +589,31 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -578,7 +621,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "分类&nbsp;",
+        "自己动手搭建云端IDE&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 60,
@@ -593,6 +636,21 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
 
 
   <script  src="/js/local-search.js" ></script>
@@ -606,6 +664,20 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 
