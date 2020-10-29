@@ -341,6 +341,22 @@ img[srcset] {
     border-top-color: #435266;
     transition: border-top-color 0.2s ease-in-out;
   }
+  @supports (-webkit-backdrop-filter: blur(3px)) or (backdrop-filter: blur(3px)) {
+    :root:not([data-user-color-scheme]) .navbar .dropdown-collapse,
+    :root:not([data-user-color-scheme]) .top-nav-collapse,
+    :root:not([data-user-color-scheme]) .navbar-col-show {
+      background: rgba(9,7,7,0.8);
+      -webkit-backdrop-filter: blur(3px);
+      backdrop-filter: blur(3px);
+    }
+  }
+  @supports not ((-webkit-backdrop-filter: blur(3px)) or (backdrop-filter: blur(3px))) {
+    :root:not([data-user-color-scheme]) .navbar .dropdown-collapse,
+    :root:not([data-user-color-scheme]) .top-nav-collapse,
+    :root:not([data-user-color-scheme]) .navbar-col-show {
+      background: #090707;
+    }
+  }
   :root:not([data-user-color-scheme]) .note :not(pre) > code {
     background-color: rgba(27,31,35,0.05);
   }
@@ -410,6 +426,22 @@ img[srcset] {
 [data-user-color-scheme='dark'] hr {
   border-top-color: #435266;
   transition: border-top-color 0.2s ease-in-out;
+}
+@supports (-webkit-backdrop-filter: blur(3px)) or (backdrop-filter: blur(3px)) {
+  [data-user-color-scheme='dark'] .navbar .dropdown-collapse,
+  [data-user-color-scheme='dark'] .top-nav-collapse,
+  [data-user-color-scheme='dark'] .navbar-col-show {
+    background: rgba(9,7,7,0.8);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+  }
+}
+@supports not ((-webkit-backdrop-filter: blur(3px)) or (backdrop-filter: blur(3px))) {
+  [data-user-color-scheme='dark'] .navbar .dropdown-collapse,
+  [data-user-color-scheme='dark'] .top-nav-collapse,
+  [data-user-color-scheme='dark'] .navbar-col-show {
+    background: #090707;
+  }
 }
 [data-user-color-scheme='dark'] .note :not(pre) > code {
   background-color: rgba(27,31,35,0.05);
@@ -767,10 +799,21 @@ img[srcset] {
   -o-transform: rotate(-135deg);
   transform: rotate(-135deg);
 }
-.navbar .dropdown-collapse,
-.top-nav-collapse,
-.navbar-col-show {
-  background-color: var(--navbar-bg-color);
+@supports (-webkit-backdrop-filter: blur(3px)) or (backdrop-filter: blur(3px)) {
+  .navbar .dropdown-collapse,
+  .top-nav-collapse,
+  .navbar-col-show {
+    background: rgba(9,7,7,0.8);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+  }
+}
+@supports not ((-webkit-backdrop-filter: blur(3px)) or (backdrop-filter: blur(3px))) {
+  .navbar .dropdown-collapse,
+  .top-nav-collapse,
+  .navbar-col-show {
+    background: #090707;
+  }
 }
 @media (max-width: 767px) {
   .navbar {
