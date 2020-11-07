@@ -2,7 +2,8 @@
 title: 自己动手搭建云端IDE
 date: 2020-07-09 15:50:51
 index_img: /img/自己动手搭建云端IDE.jpg
-tags:
+tags: [Linux, vscode]
+categories: [玩具]
 ---
 
 基于 code-server 搭建一个云端 VS Code，随时随地在浏览器上 Coding
