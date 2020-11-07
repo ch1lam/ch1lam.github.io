@@ -1,7 +1,7 @@
 ---
-title: Rust开发环境搭建——WSL+VS CODE
+title: Rust开发环境搭建
 date: 2020-11-07 17:52:49
-index_img: /img/Rust开发环境搭建——WSL+VS-CODE.jpg
+index_img: /img/Rust开发环境搭建.jpg
 tags: [Rust,vscode]
 categories: [教程,Rust常见问题]
 ---
