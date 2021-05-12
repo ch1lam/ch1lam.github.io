@@ -8,32 +8,36 @@
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#090707">
-  <meta name="description" content="">
+  <meta name="description" content="为了让本地的环境更加干净便于管理，我正逐渐地把开发环境转移到wsl2中，win环境仅用来作游戏机和一些剪辑工作">
   <meta name="author" content="chilam">
   <meta name="keywords" content="">
+  
   <title>Rust开发环境搭建 - Tach</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/atom-one-dark-reasonable.min.css" />
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark-reasonable.min.css" />
     
   
 
   
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -50,6 +54,10 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.9","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"6599bf7eb2a3463cf386659aad832eb2","google":"UA-172130010-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"cNwPoFriyu0KYDj7QTRY5S9S-gzGzoHsz","app_key":"qfYQde0smwJbBJFu3QuxT4H4","server_url":"https://cnwpofri.lc-cn-n1-shared.com"}}};
+  </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.2.0"></head>
@@ -161,13 +169,13 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('/img/default.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Rust开发环境搭建">
               
             </span>
 
@@ -189,7 +197,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      932 字
+      934 字
     </span>
   
 
@@ -221,13 +229,13 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
     <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
         <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
+          <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">Rust开发环境搭建</h1>
             
@@ -237,122 +245,39 @@
                 
               </p>
             
-            <div class="markdown-body" id="post-body">
+            <div class="markdown-body">
               <p>为了让本地的环境更加干净便于管理，我正逐渐地把开发环境转移到wsl2中，win环境仅用来作游戏机和一些剪辑工作</p>
 <a id="more"></a>
 <h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><p><a target="_blank" rel="noopener" href="https://www.rust-lang.org/zh-CN/">Rust官网</a>中已经写得很详细了，这是我见过的编程语言中最漂亮的官网，而且官方文档也写得非常好，根据指引操作即可。</p>
 <p>安装Rust主要有两种方式，第一种下载 Rustup 安装器并安装MSVC，第二种通过命令行下载。</p>
 <p>这里我选择更方便的命令行方式以便安装在 wsl2 中：</p>
-<div class="hljs"><pre><code class="hljs bash"><span class="hljs-comment"># 设置临时镜像加速，使用代理则不需要</span>
-<span class="hljs-built_in">export</span> RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
-<span class="hljs-built_in">export</span> RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
-
-<span class="hljs-comment"># 如果在 WSL1 环境下，可能需要设置这个</span>
-<span class="hljs-built_in">export</span> RUSTUP_IO_THREADS=1
-
-<span class="hljs-comment"># 官网提供的安装命令</span>
-curl --proto <span class="hljs-string">&#x27;=https&#x27;</span> --tlsv1.2 -sSf https://sh.rustup.rs | sh</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 设置临时镜像加速，使用代理则不需要</span><br><span class="hljs-built_in">export</span> RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static<br><span class="hljs-built_in">export</span> RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup<br><br><span class="hljs-comment"># 如果在 WSL1 环境下，可能需要设置这个</span><br><span class="hljs-built_in">export</span> RUSTUP_IO_THREADS=1<br><br><span class="hljs-comment"># 官网提供的安装命令</span><br>curl --proto <span class="hljs-string">&#x27;=https&#x27;</span> --tlsv1.2 -sSf https://sh.rustup.rs | sh<br></code></pre></div></td></tr></table></figure>
 <p>根据指引安装，我选择默认的<kbd>1</kbd></p>
 <blockquote>
 <p>在 Rust 开发环境中，所有工具都安装在 <code>~/.cargo/bin</code> 目录中，您可以在这里找到包括 <code>rustc</code>、<code>cargo</code> 和 <code>rustup</code> 在内的 Rust 工具链。</p>
 </blockquote>
-<h2 id="更改镜像源"><a href="#更改镜像源" class="headerlink" title="更改镜像源"></a>更改镜像源</h2><div class="hljs"><pre><code class="hljs bash">[source.crates-io]
-registry = <span class="hljs-string">&quot;https://github.com/rust-lang/crates.io-index&quot;</span>
-
-<span class="hljs-comment"># 替换成你偏好的镜像源</span>
-replace-with = <span class="hljs-string">&#x27;rustcc&#x27;</span>
-
-<span class="hljs-comment"># rustcc 1号源</span>
-[source.rustcc]
-registry=<span class="hljs-string">&quot;git://crates.rustcc.com/crates.io-index&quot;</span>
-
-<span class="hljs-comment"># rustcc 2号源</span>
-[source.rustcc2]
-registry=<span class="hljs-string">&quot;git://crates.rustcc.cn/crates.io-index&quot;</span>
-
-<span class="hljs-comment"># 清华大学</span>
-[source.tuna]
-registry = <span class="hljs-string">&quot;https://mirrors.tuna.tsinghua.edu.cn/git/crates.io-index.git&quot;</span>
-
-<span class="hljs-comment"># 中国科学技术大学</span>
-[source.ustc]
-registry = <span class="hljs-string">&quot;git://mirrors.ustc.edu.cn/crates.io-index&quot;</span>
-
-<span class="hljs-comment"># 上海交通大学</span>
-[source.sjtu]
-registry = <span class="hljs-string">&quot;https://mirrors.sjtug.sjtu.edu.cn/git/crates.io-index&quot;</span>
-
-[net]
-git-fetch-with-cli = <span class="hljs-literal">true</span></code></pre></div>
+<h2 id="更改镜像源"><a href="#更改镜像源" class="headerlink" title="更改镜像源"></a>更改镜像源</h2><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">[source.crates-io]<br>registry = <span class="hljs-string">&quot;https://github.com/rust-lang/crates.io-index&quot;</span><br><br><span class="hljs-comment"># 替换成你偏好的镜像源</span><br>replace-with = <span class="hljs-string">&#x27;rustcc&#x27;</span><br><br><span class="hljs-comment"># rustcc 1号源</span><br>[source.rustcc]<br>registry=<span class="hljs-string">&quot;git://crates.rustcc.com/crates.io-index&quot;</span><br><br><span class="hljs-comment"># rustcc 2号源</span><br>[source.rustcc2]<br>registry=<span class="hljs-string">&quot;git://crates.rustcc.cn/crates.io-index&quot;</span><br><br><span class="hljs-comment"># 清华大学</span><br>[source.tuna]<br>registry = <span class="hljs-string">&quot;https://mirrors.tuna.tsinghua.edu.cn/git/crates.io-index.git&quot;</span><br><br><span class="hljs-comment"># 中国科学技术大学</span><br>[source.ustc]<br>registry = <span class="hljs-string">&quot;git://mirrors.ustc.edu.cn/crates.io-index&quot;</span><br><br><span class="hljs-comment"># 上海交通大学</span><br>[source.sjtu]<br>registry = <span class="hljs-string">&quot;https://mirrors.sjtug.sjtu.edu.cn/git/crates.io-index&quot;</span><br><br>[net]<br>git-fetch-with-cli = <span class="hljs-literal">true</span><br></code></pre></div></td></tr></table></figure>
 <h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h2><h3 id="Cargo"><a href="#Cargo" class="headerlink" title="Cargo"></a>Cargo</h3><p>在安装 Rustup 时，会同时安装 Rust 构建工具和包管理器的最新稳定版，即 Cargo</p>
 <p>检查是否安装了Rust和Cargo，可以在终端中运行：</p>
-<div class="hljs"><pre><code class="hljs bash">cargo --version</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">cargo --version<br></code></pre></div></td></tr></table></figure>
 <h2 id="创建一个Hello-World"><a href="#创建一个Hello-World" class="headerlink" title="创建一个Hello World"></a>创建一个Hello World</h2><p>在命令行中运行：</p>
-<div class="hljs"><pre><code class="hljs bash">cargo new hello-rust</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">cargo new hello-rust<br></code></pre></div></td></tr></table></figure>
 <p>当前目录下会生成一个 <code>hello-rust</code> 的新目录，其中：</p>
-<div class="hljs"><pre><code class="hljs bash">hello-rust     
-|- Cargo.toml   <span class="hljs-comment"># 项目的清单</span>
-|- src          
-  |- main.rs    <span class="hljs-comment"># 编写应用代码的地方</span></code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">hello-rust     <br>|- Cargo.toml   <span class="hljs-comment"># 项目的清单</span><br>|- src          <br>  |- main.rs    <span class="hljs-comment"># 编写应用代码的地方</span><br></code></pre></div></td></tr></table></figure>
 <h2 id="配置VS-Code"><a href="#配置VS-Code" class="headerlink" title="配置VS Code"></a>配置VS Code</h2><h3 id="安装拓展"><a href="#安装拓展" class="headerlink" title="安装拓展"></a>安装拓展</h3><p>首先安装 <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=rust-lang.rust">Rust</a> 拓展和 <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=matklad.rust-analyzer">rust-analyzer</a> 拓展</p>
-<p><img src="Rust.jpg" srcset="/img/loading.gif" alt="Rust"></p>
-<p><img src="rust-analyzer.jpg" srcset="/img/loading.gif" alt="rust-analyzer"></p>
+<p><img src="Rust.jpg" srcset="/img/loading.gif" lazyload alt="Rust"></p>
+<p><img src="rust-analyzer.jpg" srcset="/img/loading.gif" lazyload alt="rust-analyzer"></p>
 <p>安装 <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=bungcip.better-toml">Better TOML</a> 拓展以便支持 <code>.toml</code> 文件语法高亮</p>
-<p><img src="Better TOML.jpg" srcset="/img/loading.gif" alt="Better TOML"></p>
+<p><img src="Better TOML.jpg" srcset="/img/loading.gif" lazyload alt="Better TOML"></p>
 <p>为了能在 vs code 上调试 rust 代码，还需安装 <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb">CodeLLDB</a> 拓展</p>
-<p><img src="CodeLLDB.jpg" srcset="/img/loading.gif" alt="CodeLLDB"></p>
+<p><img src="CodeLLDB.jpg" srcset="/img/loading.gif" lazyload alt="CodeLLDB"></p>
 <h3 id="运行hello-rust"><a href="#运行hello-rust" class="headerlink" title="运行hello-rust"></a>运行hello-rust</h3><p>在命令行中运行：</p>
-<div class="hljs"><pre><code class="hljs bash">code ~/hello-rust <span class="hljs-comment"># 这里注意选择项目所在路径</span></code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">code ~/hello-rust <span class="hljs-comment"># 这里注意选择项目所在路径</span><br></code></pre></div></td></tr></table></figure>
 <p>此时 vs code 右下角会出现相应提示，根据提示操作即可，如果没有提示可以尝试先打开<code>src/main.rs</code></p>
 <p>选择 <code>运行</code> → <code>打开配置</code> 此时应该会生成 <code>launch.json</code> 文件并打开</p>
-<div class="hljs"><pre><code class="hljs json"><span class="hljs-comment">// 生成的launch.json配置如下 2020.11.07</span>
-&#123;
-    <span class="hljs-comment">// 使用 IntelliSense 了解相关属性。 </span>
-    <span class="hljs-comment">// 悬停以查看现有属性的描述。</span>
-    <span class="hljs-comment">// 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387</span>
-    <span class="hljs-attr">&quot;version&quot;</span>: <span class="hljs-string">&quot;0.2.0&quot;</span>,
-    <span class="hljs-attr">&quot;configurations&quot;</span>: [
-        &#123;
-            <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;lldb&quot;</span>,
-            <span class="hljs-attr">&quot;request&quot;</span>: <span class="hljs-string">&quot;launch&quot;</span>,
-            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;Debug executable &#x27;hello-rust&#x27;&quot;</span>,
-            <span class="hljs-attr">&quot;cargo&quot;</span>: &#123;
-                <span class="hljs-attr">&quot;args&quot;</span>: [
-                    <span class="hljs-string">&quot;build&quot;</span>,
-                    <span class="hljs-string">&quot;--bin=hello-rust&quot;</span>,
-                    <span class="hljs-string">&quot;--package=hello-rust&quot;</span>
-                ],
-                <span class="hljs-attr">&quot;filter&quot;</span>: &#123;
-                    <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;hello-rust&quot;</span>,
-                    <span class="hljs-attr">&quot;kind&quot;</span>: <span class="hljs-string">&quot;bin&quot;</span>
-                &#125;
-            &#125;,
-            <span class="hljs-attr">&quot;args&quot;</span>: [],
-            <span class="hljs-attr">&quot;cwd&quot;</span>: <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;&quot;</span>
-        &#125;,
-        &#123;
-            <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;lldb&quot;</span>,
-            <span class="hljs-attr">&quot;request&quot;</span>: <span class="hljs-string">&quot;launch&quot;</span>,
-            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;Debug unit tests in executable &#x27;hello-rust&#x27;&quot;</span>,
-            <span class="hljs-attr">&quot;cargo&quot;</span>: &#123;
-                <span class="hljs-attr">&quot;args&quot;</span>: [
-                    <span class="hljs-string">&quot;test&quot;</span>,
-                    <span class="hljs-string">&quot;--no-run&quot;</span>,
-                    <span class="hljs-string">&quot;--bin=hello-rust&quot;</span>,
-                    <span class="hljs-string">&quot;--package=hello-rust&quot;</span>
-                ],
-                <span class="hljs-attr">&quot;filter&quot;</span>: &#123;
-                    <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;hello-rust&quot;</span>,
-                    <span class="hljs-attr">&quot;kind&quot;</span>: <span class="hljs-string">&quot;bin&quot;</span>
-                &#125;
-            &#125;,
-            <span class="hljs-attr">&quot;args&quot;</span>: [],
-            <span class="hljs-attr">&quot;cwd&quot;</span>: <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;&quot;</span>
-        &#125;
-    ]
-&#125;</code></pre></div>
+<figure class="highlight json"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs json"><span class="hljs-comment">// 生成的launch.json配置如下 2020.11.07</span><br>&#123;<br>    <span class="hljs-comment">// 使用 IntelliSense 了解相关属性。 </span><br>    <span class="hljs-comment">// 悬停以查看现有属性的描述。</span><br>    <span class="hljs-comment">// 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387</span><br>    <span class="hljs-attr">&quot;version&quot;</span>: <span class="hljs-string">&quot;0.2.0&quot;</span>,<br>    <span class="hljs-attr">&quot;configurations&quot;</span>: [<br>        &#123;<br>            <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;lldb&quot;</span>,<br>            <span class="hljs-attr">&quot;request&quot;</span>: <span class="hljs-string">&quot;launch&quot;</span>,<br>            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;Debug executable &#x27;hello-rust&#x27;&quot;</span>,<br>            <span class="hljs-attr">&quot;cargo&quot;</span>: &#123;<br>                <span class="hljs-attr">&quot;args&quot;</span>: [<br>                    <span class="hljs-string">&quot;build&quot;</span>,<br>                    <span class="hljs-string">&quot;--bin=hello-rust&quot;</span>,<br>                    <span class="hljs-string">&quot;--package=hello-rust&quot;</span><br>                ],<br>                <span class="hljs-attr">&quot;filter&quot;</span>: &#123;<br>                    <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;hello-rust&quot;</span>,<br>                    <span class="hljs-attr">&quot;kind&quot;</span>: <span class="hljs-string">&quot;bin&quot;</span><br>                &#125;<br>            &#125;,<br>            <span class="hljs-attr">&quot;args&quot;</span>: [],<br>            <span class="hljs-attr">&quot;cwd&quot;</span>: <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;&quot;</span><br>        &#125;,<br>        &#123;<br>            <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;lldb&quot;</span>,<br>            <span class="hljs-attr">&quot;request&quot;</span>: <span class="hljs-string">&quot;launch&quot;</span>,<br>            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;Debug unit tests in executable &#x27;hello-rust&#x27;&quot;</span>,<br>            <span class="hljs-attr">&quot;cargo&quot;</span>: &#123;<br>                <span class="hljs-attr">&quot;args&quot;</span>: [<br>                    <span class="hljs-string">&quot;test&quot;</span>,<br>                    <span class="hljs-string">&quot;--no-run&quot;</span>,<br>                    <span class="hljs-string">&quot;--bin=hello-rust&quot;</span>,<br>                    <span class="hljs-string">&quot;--package=hello-rust&quot;</span><br>                ],<br>                <span class="hljs-attr">&quot;filter&quot;</span>: &#123;<br>                    <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;hello-rust&quot;</span>,<br>                    <span class="hljs-attr">&quot;kind&quot;</span>: <span class="hljs-string">&quot;bin&quot;</span><br>                &#125;<br>            &#125;,<br>            <span class="hljs-attr">&quot;args&quot;</span>: [],<br>            <span class="hljs-attr">&quot;cwd&quot;</span>: <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;&quot;</span><br>        &#125;<br>    ]<br>&#125;<br></code></pre></div></td></tr></table></figure>
 <p>这时回到 <code>main.rs</code> 打断点，按<kbd>F5</kbd>启动调试，假如启动调试失败，观察左下方状态栏，是否未选择LLDB调试：</p>
-<p><img src="选择LLDB.jpg" srcset="/img/loading.gif" alt="选择LLDB"></p>
+<p><img src="选择LLDB.jpg" srcset="/img/loading.gif" lazyload alt="选择LLDB"></p>
 <h2 id="卸载Rust"><a href="#卸载Rust" class="headerlink" title="卸载Rust"></a>卸载Rust</h2><p>执行 <code>rustup self uninstall</code></p>
 
             </div>
@@ -381,10 +306,14 @@ git-fetch-with-cli = <span class="hljs-literal">true</span></code></pre></div>
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
               
               
-                <div class="post-prevnext row">
+                <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
                     
@@ -404,39 +333,6 @@ git-fetch-with-cli = <span class="hljs-literal">true</span></code></pre></div>
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments">
-                
-                
-  <script type="text/javascript">
-    function loadUtterances() {
-      var light = 'github-light';
-      var dark = 'github-dark';
-      var schema = document.documentElement.getAttribute('data-user-color-scheme');
-      if (schema === 'dark') {
-        schema = dark;
-      } else {
-        schema = light;
-      }
-      window.UtterancesThemeLight = light;
-      window.UtterancesThemeDark = dark;
-      var s = document.createElement('script');
-      s.setAttribute('src', 'https://utteranc.es/client.js');
-      s.setAttribute('repo', 'ch1lam/commit-utterance');
-      s.setAttribute('issue-term', 'pathname');
-      
-      s.setAttribute('label', 'utterances');
-      
-      s.setAttribute('theme', schema);
-      s.setAttribute('crossorigin', 'anonymous');
-      document.getElementById('comments').appendChild(s);
-    }
-    waitElementVisible('comments', loadUtterances)
-  </script>
-
-
-              </article>
-            
           </article>
         </div>
       </div>
@@ -445,7 +341,7 @@ git-fetch-with-cli = <span class="hljs-literal">true</span></code></pre></div>
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
       </div>
@@ -457,16 +353,15 @@ git-fetch-with-cli = <span class="hljs-literal">true</span></code></pre></div>
 
 
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -487,9 +382,10 @@ git-fetch-with-cli = <span class="hljs-literal">true</span></code></pre></div>
     </div>
   </div>
 </div>
-  
+    
 
-  
+    
+  </main>
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
@@ -527,17 +423,32 @@ git-fetch-with-cli = <span class="hljs-literal">true</span></code></pre></div>
   
 </footer>
 
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
 <script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
 
   
-    <script  src="/js/lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
@@ -546,283 +457,51 @@ git-fetch-with-cli = <span class="hljs-literal">true</span></code></pre></div>
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
 
 
 
-  <script defer>
-  (function () {
-    // 查询存储的记录
-    function getRecord(Counter, target) {
-      return new Promise(function (resolve, reject) {
-        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
-          .then(resp => resp.json())
-          .then(({results, code, error}) => {
-            if (code === 401) {
-              throw error;
-            }
-            if (results && results.length > 0) {
-              var record = results[0];
-              resolve(record);
-            } else {
-              Counter('post', '/classes/Counter', {target, time: 0})
-                .then(resp => resp.json())
-                .then((record, error) => {
-                  if (error) {
-                    throw error;
-                  }
-                  resolve(record);
-                }).catch(error => {
-                console.error('Failed to create', error);
-                reject(error);
-              });
-            }
-          }).catch((error) => {
-          console.error('LeanCloud Counter Error:', error);
-          reject(error);
-        });
-      })
-    }
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
 
-    // 发起自增请求
-    function increment(Counter, incrArr) {
-      return new Promise(function (resolve, reject) {
-        Counter('post', '/batch', {
-          "requests": incrArr
-        }).then((res) => {
-          res = res.json();
-          if (res.error) {
-            throw res.error;
-          }
-          resolve(res);
-        }).catch((error) => {
-          console.error('Failed to save visitor count', error);
-          reject(error);
-        });
-      });
-    }
 
-    // 构建自增请求体
-    function buildIncrement(objectId) {
-      return {
-        "method": "PUT",
-        "path": `/1.1/classes/Counter/${ objectId }`,
-        "body": {
-          "time": {
-            '__op': 'Increment',
-            'amount': 1
-          }
-        }
-      }
-    }
 
-    // 校验是否为有效的 UV
-    function validUV() {
-      var key = 'LeanCloud_UV_Flag';
-      var flag = localStorage.getItem(key);
-      if (flag) {
-        // 距离标记小于 24 小时则不计为 UV
-        if (new Date().getTime() - parseInt(flag) <= 86400000) {
-          return false;
-        }
-      }
-      localStorage.setItem(key, new Date().getTime().toString());
-      return true;
-    }
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
 
-    function addCount(Counter) {
-      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
-      var getterArr = [];
-      var incrArr = [];
 
-      // 请求 PV 并自增
-      var pvCtn = document.querySelector('#leancloud-site-pv-container');
-      if (pvCtn || enableIncr) {
-        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
-          incrArr.push(buildIncrement(record.objectId))
-          var ele = document.querySelector('#leancloud-site-pv');
-          if (ele) {
-            ele.innerText = record.time + 1;
-            if (pvCtn) {
-              pvCtn.style.display = 'inline';
-            }
-          }
-        });
-        getterArr.push(pvGetter);
-      }
 
-      // 请求 UV 并自增
-      var uvCtn = document.querySelector('#leancloud-site-uv-container');
-      if (uvCtn || enableIncr) {
-        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
-          var vuv = validUV();
-          vuv && incrArr.push(buildIncrement(record.objectId))
-          var ele = document.querySelector('#leancloud-site-uv');
-          if (ele) {
-            ele.innerText = record.time + (vuv ? 1 : 0);
-            if (uvCtn) {
-              uvCtn.style.display = 'inline';
-            }
-          }
-        });
-        getterArr.push(uvGetter);
-      }
-
-      // 如果是文章，请求文章的浏览数，并自增
-      if ('true' === 'true') {
-        var viewCtn = document.querySelector('#leancloud-post-views-container');
-        if (viewCtn || enableIncr) {
-          var target = decodeURI('/2020/11/07/Rust%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/');
-          var viewGetter = getRecord(Counter, target).then((record) => {
-            incrArr.push(buildIncrement(record.objectId))
-            if (viewCtn) {
-              var ele = document.querySelector('#leancloud-post-views');
-              if (ele) {
-                ele.innerText = (record.time || 0) + 1;
-                viewCtn.style.display = 'inline';
-              }
-            }
-          });
-          getterArr.push(viewGetter);
-        }
-      }
-
-      // 如果启动计数自增，批量发起自增请求
-      if (enableIncr) {
-        Promise.all(getterArr).then(() => {
-          incrArr.length > 0 && increment(Counter, incrArr);
-        })
-      }
-    }
-
-    var app_id = 'cNwPoFriyu0KYDj7QTRY5S9S-gzGzoHsz'
-    var app_key = 'qfYQde0smwJbBJFu3QuxT4H4'
-    var server_url = 'https://cnwpofri.lc-cn-n1-shared.com'
-
-    function fetchData(api_server) {
-      var Counter = (method, url, data) => {
-        return fetch(`${ api_server }/1.1${ url }`, {
-          method,
-          headers: {
-            'X-LC-Id': app_id,
-            'X-LC-Key': app_key,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data)
-        });
-      };
-
-      addCount(Counter);
-    }
-
-    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
-
-    if (api_server) {
-      fetchData(api_server);
-    } else {
-      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
-        .then(resp => resp.json())
-        .then(({api_server}) => {
-          fetchData('https://' + api_server);
-        });
-    }
-  })();
-</script>
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
 
 
 
 
+  <script defer src="/js/leancloud.js" ></script>
 
 
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "Rust开发环境搭建&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 60,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
       
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
+      typing(title)
+      
+    })(window, document);
   </script>
 
 
 
   <script  src="/js/local-search.js" ></script>
   <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
-      }
-    );
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
   </script>
 
 
@@ -870,6 +549,10 @@ git-fetch-with-cli = <span class="hljs-literal">true</span></code></pre></div>
 
 
 
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 </body>
