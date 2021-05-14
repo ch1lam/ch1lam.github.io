@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Tach</title>
-  <icon>http://yoursite.com/img/favicon.png</icon>
+  <icon>http://tach.cc/img/favicon.png</icon>
   
-  <link href="http://yoursite.com/atom.xml" rel="self"/>
+  <link href="http://tach.cc/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://tach.cc/"/>
   <updated>2020-11-07T11:24:03.244Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://tach.cc/</id>
   
   <author>
     <name>chilam</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Rust开发环境搭建</title>
-    <link href="http://yoursite.com/2020/11/07/Rust%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
-    <id>http://yoursite.com/2020/11/07/Rust%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</id>
+    <link href="http://tach.cc/2020/11/07/Rust%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    <id>http://tach.cc/2020/11/07/Rust%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</id>
     <published>2020-11-07T09:52:49.000Z</published>
     <updated>2020-11-07T11:24:03.244Z</updated>
     
@@ -28,21 +28,21 @@
     
     
     
-    <category term="教程" scheme="http://yoursite.com/categories/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="http://tach.cc/categories/%E6%95%99%E7%A8%8B/"/>
     
-    <category term="Rust常见问题" scheme="http://yoursite.com/categories/%E6%95%99%E7%A8%8B/Rust%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
+    <category term="Rust常见问题" scheme="http://tach.cc/categories/%E6%95%99%E7%A8%8B/Rust%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
     
     
-    <category term="Rust" scheme="http://yoursite.com/tags/Rust/"/>
+    <category term="Rust" scheme="http://tach.cc/tags/Rust/"/>
     
-    <category term="vscode" scheme="http://yoursite.com/tags/vscode/"/>
+    <category term="vscode" scheme="http://tach.cc/tags/vscode/"/>
     
   </entry>
   
   <entry>
     <title>自己动手搭建云端IDE</title>
-    <link href="http://yoursite.com/2020/07/09/%E8%87%AA%E5%B7%B1%E5%8A%A8%E6%89%8B%E6%90%AD%E5%BB%BA%E4%BA%91%E7%AB%AFIDE/"/>
-    <id>http://yoursite.com/2020/07/09/%E8%87%AA%E5%B7%B1%E5%8A%A8%E6%89%8B%E6%90%AD%E5%BB%BA%E4%BA%91%E7%AB%AFIDE/</id>
+    <link href="http://tach.cc/2020/07/09/%E8%87%AA%E5%B7%B1%E5%8A%A8%E6%89%8B%E6%90%AD%E5%BB%BA%E4%BA%91%E7%AB%AFIDE/"/>
+    <id>http://tach.cc/2020/07/09/%E8%87%AA%E5%B7%B1%E5%8A%A8%E6%89%8B%E6%90%AD%E5%BB%BA%E4%BA%91%E7%AB%AFIDE/</id>
     <published>2020-07-09T07:50:51.000Z</published>
     <updated>2020-11-07T10:38:17.974Z</updated>
     
@@ -51,19 +51,19 @@
     
     
     
-    <category term="玩具" scheme="http://yoursite.com/categories/%E7%8E%A9%E5%85%B7/"/>
+    <category term="玩具" scheme="http://tach.cc/categories/%E7%8E%A9%E5%85%B7/"/>
     
     
-    <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    <category term="Linux" scheme="http://tach.cc/tags/Linux/"/>
     
-    <category term="vscode" scheme="http://yoursite.com/tags/vscode/"/>
+    <category term="vscode" scheme="http://tach.cc/tags/vscode/"/>
     
   </entry>
   
   <entry>
     <title>CentOS 7更新git版本</title>
-    <link href="http://yoursite.com/2020/07/06/CentOS%207%E6%9B%B4%E6%96%B0git%E7%89%88%E6%9C%AC/"/>
-    <id>http://yoursite.com/2020/07/06/CentOS%207%E6%9B%B4%E6%96%B0git%E7%89%88%E6%9C%AC/</id>
+    <link href="http://tach.cc/2020/07/06/CentOS%207%E6%9B%B4%E6%96%B0git%E7%89%88%E6%9C%AC/"/>
+    <id>http://tach.cc/2020/07/06/CentOS%207%E6%9B%B4%E6%96%B0git%E7%89%88%E6%9C%AC/</id>
     <published>2020-07-06T14:14:21.000Z</published>
     <updated>2020-07-08T16:50:40.849Z</updated>
     
@@ -72,23 +72,23 @@
     
     
     
-    <category term="教程" scheme="http://yoursite.com/categories/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="http://tach.cc/categories/%E6%95%99%E7%A8%8B/"/>
     
-    <category term="VPS常见问题" scheme="http://yoursite.com/categories/%E6%95%99%E7%A8%8B/VPS%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
+    <category term="VPS常见问题" scheme="http://tach.cc/categories/%E6%95%99%E7%A8%8B/VPS%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
     
     
-    <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    <category term="Linux" scheme="http://tach.cc/tags/Linux/"/>
     
-    <category term="CentOS" scheme="http://yoursite.com/tags/CentOS/"/>
+    <category term="CentOS" scheme="http://tach.cc/tags/CentOS/"/>
     
-    <category term="Git" scheme="http://yoursite.com/tags/Git/"/>
+    <category term="Git" scheme="http://tach.cc/tags/Git/"/>
     
   </entry>
   
   <entry>
     <title>博客功能测试</title>
-    <link href="http://yoursite.com/2020/05/27/%E5%8D%9A%E5%AE%A2%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
-    <id>http://yoursite.com/2020/05/27/%E5%8D%9A%E5%AE%A2%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/</id>
+    <link href="http://tach.cc/2020/05/27/%E5%8D%9A%E5%AE%A2%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
+    <id>http://tach.cc/2020/05/27/%E5%8D%9A%E5%AE%A2%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/</id>
     <published>2020-05-27T12:17:19.000Z</published>
     <updated>2020-07-09T16:41:56.430Z</updated>
     
@@ -97,14 +97,14 @@
     
     
     
-    <category term="博客技术" scheme="http://yoursite.com/categories/%E5%8D%9A%E5%AE%A2%E6%8A%80%E6%9C%AF/"/>
+    <category term="博客技术" scheme="http://tach.cc/categories/%E5%8D%9A%E5%AE%A2%E6%8A%80%E6%9C%AF/"/>
     
     
-    <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
+    <category term="Hexo" scheme="http://tach.cc/tags/Hexo/"/>
     
-    <category term="Fluid" scheme="http://yoursite.com/tags/Fluid/"/>
+    <category term="Fluid" scheme="http://tach.cc/tags/Fluid/"/>
     
-    <category term="Test" scheme="http://yoursite.com/tags/Test/"/>
+    <category term="Test" scheme="http://tach.cc/tags/Test/"/>
     
   </entry>
   
