@@ -723,8 +723,8 @@ post:
     enable: true
     # 指定的插件，需要同时设置对应插件的必要参数
     # The specified plugin needs to set the necessary parameters at the same time
-    # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo
-    type: utterances
+    # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | giscus
+    type: giscus
 
 
 #---------------------------
@@ -865,12 +865,12 @@ cusdis:
 # Based on GitHub Discussions, similar to Utterances
 # See: https://giscus.app/
 giscus:
-  repo:
-  repo-id:
-  category:
-  category-id:
+  repo: ch1lam/ch1lam.github.io
+  repo-id: MDEwOlJlcG9zaXRvcnkyNjY5ODExMTk=
+  category: Announcements
+  category-id: DIC_kwDOD-nO_84CP2tr
   theme-light: light
-  theme-dark: dark
+  theme-dark: dark_dimmed
   mapping: pathname
   reactions-enabled: 1
   emit-metadata: 0
@@ -1016,8 +1016,8 @@ links:
     enable: true
     # 指定的插件，需要同时设置对应插件的必要参数
     # The specified plugin needs to set the necessary parameters at the same time
-    # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo
-    type: utterances
+    # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | giscus
+    type: giscus
 
 
 #---------------------------
