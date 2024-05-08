@@ -2,6 +2,7 @@
 import Layout from "@layouts/Layout.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
+import Comment from "@components/Comment.astro";
 import Tag from "@components/Tag.astro";
 import Toc from "@components/Toc.astro";
 import Datetime from "@components/Datetime";
@@ -47,6 +48,7 @@ const layoutProps = {
 };
 ---
 
+<Comment />
 <Layout {...layoutProps}>
   <Header />
 
