@@ -1,6 +1,6 @@
 ---
 author: chilam
-pubDatetime: 2024-05-09 16:10:19
+pubDatetime: 2024-05-09 06:10:19
 title: 将博客从Hexo迁移到Astro
 slug: 将博客从Hexo迁移到Astro
 featured: false
