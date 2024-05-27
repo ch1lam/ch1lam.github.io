@@ -5,7 +5,7 @@ title: "About"
 
 <h2>你好👋，我是 Chilam</h2>
 
-我是一名全栈堆工程师，专注于Web端产品的构建。擅长 Javascript/Typescript、Java、Shell。
+我是一名全栈工程师，专注于Web端产品的构建。擅长 Javascript/Typescript、Java、Shell。
 编程能使我感到愉悦，我希望可以创造给人们带来价值的产品，并一直为之迭代。
 
 庆幸身边有志同道合的好友，可以一起探讨有趣的产品、技术，同时希望以后还能遇到更多的有趣的人。
