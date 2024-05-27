@@ -2,7 +2,7 @@
 author: chilam
 pubDatetime: 2022-04-27 17:55:53
 title: 详述SSH的原理及其应用
-slug: 详述SSH的原理及其应用
+slug: detailed-explanation-of-the-principle-and-application-of-ssh
 featured: false
 draft: false
 tags:

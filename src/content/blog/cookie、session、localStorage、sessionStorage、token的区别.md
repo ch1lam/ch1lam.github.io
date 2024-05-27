@@ -2,7 +2,7 @@
 author: chilam
 pubDatetime: 2022-05-02 14:46:49
 title: cookie、session、localStorage、sessionStorage、token的区别
-slug: cookie、session、localStorage、sessionStorage、token的区别
+slug: difference-between-cookie-session-localstorage-sessionstorage-token
 featured: false
 draft: false
 tags:

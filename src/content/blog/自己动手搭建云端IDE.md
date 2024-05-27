@@ -2,7 +2,7 @@
 author: chilam
 pubDatetime: 2020-07-09 15:50:51
 title: 自己动手搭建云端IDE
-slug: 自己动手搭建云端IDE
+slug: building-your-own-cloud-based-ide
 featured: false
 draft: false
 tags:

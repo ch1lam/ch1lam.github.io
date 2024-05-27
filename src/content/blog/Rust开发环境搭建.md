@@ -2,7 +2,7 @@
 author: chilam
 pubDatetime: 2020-11-07 17:52:49
 title: Rust开发环境搭建
-slug: Rust开发环境搭建
+slug: setting-up-rust-development-environment
 featured: false
 draft: false
 tags:

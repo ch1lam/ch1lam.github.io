@@ -2,7 +2,7 @@
 author: chilam
 pubDatetime: 2020-07-06 22:14:21
 title: CentOS 7更新git版本
-slug: CentOS 7更新git版本
+slug: updating-git-version-on-centos-7
 featured: false
 draft: false
 tags:
