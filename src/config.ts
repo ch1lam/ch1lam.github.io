@@ -11,6 +11,12 @@ export const SITE: Site = {
   postPerIndex: 6,
   postPerPage: 5,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
+  showArchives: true,
+  editPost: {
+    url: "https://github.com/ch1lam/ch1lam.github.io/edit/main/src/content/blog",
+    text: "Suggest Changes",
+    appendFilePath: true,
+  },
 };
 
 export const LOCALE = {
