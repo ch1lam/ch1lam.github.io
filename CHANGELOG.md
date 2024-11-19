@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v4.4.0 (2024-08-19)
+
+### Refactor
+
+- replace github-slugger with lodash.kebabcase (#357)
+
 ## v4.3.2 (2024-08-17)
 
 ### Fix
@@ -12,6 +18,13 @@ All notable changes to this project will be documented in this file. See [standa
 
 - update tailwind classes to v3 syntax (#345)
 - remove commented codes
+
+### Others
+
+- docs: update estimated reading time blog post (#354)
+- docs: add instructions for Google Site Verification in AstroPaper (#353)
+- docs: update pre-commit hook blog post (#344)
+- ci: add CI workflow (#340)
 
 ## v4.3.1 (2024-07-27)
 
