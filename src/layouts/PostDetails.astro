@@ -27,6 +27,7 @@ const {
   pubDatetime,
   modDatetime,
   tags,
+  editPost,
 } = post.data;
 
 const { Content, headings } = await post.render();
@@ -85,6 +86,8 @@ const nextPost =
       modDatetime={modDatetime}
       size="lg"
       className="my-2"
+      editPost={editPost}
+      postId={post.id}
     />
     {!!headings.length && <Toc headings={headings} />}
     <article id="article" role="article" class="prose mx-auto mt-8 max-w-3xl">
