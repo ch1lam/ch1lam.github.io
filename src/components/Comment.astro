@@ -36,7 +36,7 @@ const { GISCUS_REPO, GISCUS_REPO_ID, GISCUS_CATEGORY_ID, GISCUS_lang } =
     return theme;
   }
 
-  function createGusicScript() {
+  function createGiscusScript() {
     const container = document.querySelector("#main-content");
     const theme = getCurrentTheme() == "light" ? "light" : "dark_dimmed";
     let script = document.createElement("script");
@@ -58,11 +58,39 @@ const { GISCUS_REPO, GISCUS_REPO_ID, GISCUS_CATEGORY_ID, GISCUS_lang } =
     container && container.appendChild(script);
   }
 
-  createGusicScript();
+  function updateGiscusTheme() {
+    const theme = getCurrentTheme();
+    sendMessage({
+      setConfig: { theme: theme },
+    });
+  }
+
+  createGiscusScript();
   document.querySelector("#theme-btn")?.addEventListener("click", () => {
     const theme = getCurrentTheme();
     sendMessage({
       setConfig: { theme: theme == "light" ? "dark_dimmed" : "light" },
     });
+    updateGiscusTheme();
+  });
+
+  document.addEventListener("astro:after-swap", () => {
+    // 移除旧的 giscus 容器
+    const giscusContainer = document.querySelector(".giscus");
+    if (giscusContainer) {
+      giscusContainer.remove();
+    }
+
+    // 移除旧的 script
+    const oldScript = document.querySelector(
+      'script[src="https://giscus.app/client.js"]'
+    );
+    if (oldScript) {
+      oldScript.remove();
+    }
+
+    // 重新创建 giscus script 并确保主题同步
+    createGiscusScript();
+    updateGiscusTheme();
   });
 </script>
