@@ -45,14 +45,14 @@ async function loadGoogleFonts(
 > {
   const fontsConfig = [
     {
-      name: "Noto Sans Simplified Chinese",
-      font: "Noto+Sans+Simplified+Chinese",
+      name: "Noto Sans SC",
+      font: "Noto+Sans+SC",
       weight: 400,
       style: "normal"
     },
     {
-      name: "Noto Sans Simplified Chinese",
-      font: "Noto+Sans+Simplified+Chinese:wght@700",
+      name: "Noto Sans SC",
+      font: "Noto+Sans+SC:wght@700",
       weight: 700,
       style: "bold"
     },
