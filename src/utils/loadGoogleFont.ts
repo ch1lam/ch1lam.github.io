@@ -44,29 +44,29 @@ async function loadGoogleFonts(
   Array<{ name: string; data: ArrayBuffer; weight: number; style: string }>
 > {
   const fontsConfig = [
-    {
-      name: "Noto Sans SC",
-      font: "Noto+Sans+SC",
-      weight: 400,
-      style: "normal"
-    },
-    {
-      name: "Noto Sans SC",
-      font: "Noto+Sans+SC:wght@700",
-      weight: 700,
-      style: "bold"
-    },
-    {
-      name: "Noto Sans",
-      font: "Noto+Sans",
-      weight: 400,
-      style: "normal"
-    },
-    { name: "Noto Sans",
-      font: "Noto+Sans:wght@700",
-      weight: 700,
-      style: "normal",
-    },
+    // {
+    //   name: "Noto Sans SC",
+    //   font: "Noto+Sans+SC",
+    //   weight: 400,
+    //   style: "normal"
+    // },
+    // {
+    //   name: "Noto Sans SC",
+    //   font: "Noto+Sans+SC:wght@700",
+    //   weight: 700,
+    //   style: "bold"
+    // },
+    // {
+    //   name: "Noto Sans",
+    //   font: "Noto+Sans",
+    //   weight: 400,
+    //   style: "normal"
+    // },
+    // { name: "Noto Sans",
+    //   font: "Noto+Sans:wght@700",
+    //   weight: 700,
+    //   style: "normal",
+    // },
     {
       name: "IBM Plex Mono",
       font: "IBM+Plex+Mono",
