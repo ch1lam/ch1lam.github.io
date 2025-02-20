@@ -56,6 +56,12 @@ async function loadGoogleFonts(
       weight: 700,
       style: "bold",
     },
+    {
+      name: "Noto Sans Simplified Chinese",
+      font: "Noto+Sans+Simplified+Chinese",
+      weight: 400,
+      sytle: "normal"
+    }
   ];
 
   const fonts = await Promise.all(
