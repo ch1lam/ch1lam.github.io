@@ -48,13 +48,13 @@ async function loadGoogleFonts(
       name: "Noto Sans Simplified Chinese",
       font: "Noto+Sans+Simplified+Chinese",
       weight: 400,
-      sytle: "normal"
+      style: "normal"
     },
     {
       name: "Noto Sans Simplified Chinese",
       font: "Noto+Sans+Simplified+Chinese:wght@700",
       weight: 700,
-      sytle: "bold"
+      style: "bold"
     },
     {
       name: "Noto Sans",
