@@ -45,6 +45,29 @@ async function loadGoogleFonts(
 > {
   const fontsConfig = [
     {
+      name: "Noto Sans Simplified Chinese",
+      font: "Noto+Sans+Simplified+Chinese",
+      weight: 400,
+      sytle: "normal"
+    },
+    {
+      name: "Noto Sans Simplified Chinese",
+      font: "Noto+Sans+Simplified+Chinese:wght@700",
+      weight: 700,
+      sytle: "bold"
+    },
+    {
+      name: "Noto Sans",
+      font: "Noto+Sans",
+      weight: 400,
+      style: "normal"
+    },
+    { name: "Noto Sans",
+      font: "Noto+Sans:wght@700",
+      weight: 700,
+      style: "normal",
+    },
+    {
       name: "IBM Plex Mono",
       font: "IBM+Plex+Mono",
       weight: 400,
@@ -56,12 +79,6 @@ async function loadGoogleFonts(
       weight: 700,
       style: "bold",
     },
-    {
-      name: "Noto Sans Simplified Chinese",
-      font: "Noto+Sans+Simplified+Chinese",
-      weight: 400,
-      sytle: "normal"
-    }
   ];
 
   const fonts = await Promise.all(
