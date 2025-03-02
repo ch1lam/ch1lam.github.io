@@ -54,7 +54,7 @@ description: 本文将详细介绍中国大陆用户如何注册并使用海外�
 如实填写地址信息即可
 ![payout detail 3](@assets/images/大陆可用的海外收款平台Creem注册流程/payout-detail-3.png)
 
-### 等待审核
+### 7. 等待审核
 最后等待激活即可，审核速度挺快的，我自己傍晚注册，几小时后就发现已激活了。
 ![active](@assets/images/大陆可用的海外收款平台Creem注册流程/active.png)
 
