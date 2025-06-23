@@ -3,6 +3,7 @@ import { LOCALE, SITE } from "@config";
 import "@styles/base.css";
 import { ViewTransitions } from "astro:transitions";
 import  SpeedInsights  from "@vercel/speed-insights/astro"
+import Analytics from '@vercel/analytics/astro'
 
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 
@@ -136,6 +137,8 @@ const structuredData = {
     <ViewTransitions />
 
     <script is:inline src="/toggle-theme.js" async></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2840676765615751"
+     crossorigin="anonymous"></script>
   </head>
   <body>
     <slot />
