@@ -61,7 +61,8 @@ module.exports = {
         }
       },
       fontFamily: {
-        mono: ["IBM Plex Mono", "monospace"],
+        sans: ["LXGW WenKai Screen", "sans-serif"],
+        mono: ["LXGW WenKai Mono Screen", "monospace"],
       },
 
       typography: {
