@@ -1,9 +1,9 @@
 ---
 import { LOCALE, SITE } from "@config";
 import "@styles/base.css";
+import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from "@vercel/speed-insights/astro";
 import { ViewTransitions } from "astro:transitions";
-import  SpeedInsights  from "@vercel/speed-insights/astro"
-import Analytics from '@vercel/analytics/astro'
 
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 
@@ -109,14 +109,14 @@ const structuredData = {
       set:html={JSON.stringify(structuredData)}
     />
 
-    <!-- LXGW WenKai Screen + Mono Screen via jsDelivr -->
+    <!-- LXGW WenKai Screen + Mono Screen via cdnjs -->
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-web/lxgwwenkaiscreen/result.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/lxgw-wenkai-screen-web/1.520.0/style.css"
     />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-web/lxgwwenkaimonoscreen/result.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/lxgw-wenkai-screen-web/1.520.0/lxgwwenkaimonoscreen/style.css"
     />
 
     <meta name="theme-color" content="" />
