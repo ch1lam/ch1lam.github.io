@@ -1,96 +1,75 @@
 ---
-const pathname = decodeURIComponent(Astro.url.pathname || ""); //解码
-const postName = pathname?.split("/").pop();
+// Keep the existing environment names and og:title mapping so discussions survive.
 const { GISCUS_REPO, GISCUS_REPO_ID, GISCUS_CATEGORY_ID, GISCUS_lang } =
   import.meta.env;
+const enabled = GISCUS_REPO && GISCUS_REPO_ID && GISCUS_CATEGORY_ID;
 ---
 
-<meta
-  data-giscus_repo={GISCUS_REPO}
-  data-giscus_repo_id={GISCUS_REPO_ID}
-  data-giscus_category_id={GISCUS_CATEGORY_ID}
-  data-giscus_lang={GISCUS_lang}
-  id="giscus-meta"
-/>
-<meta property={`og:${postName}`} />
+{
+  enabled && (
+    <section
+      class="giscus mt-10 w-full"
+      aria-label="评论"
+      data-pagefind-ignore
+      data-repo={GISCUS_REPO}
+      data-repo-id={GISCUS_REPO_ID}
+      data-category-id={GISCUS_CATEGORY_ID}
+      data-lang={GISCUS_lang || "zh-CN"}
+    />
+  )
+}
+
 <script>
-  const {
-    giscus_repo = "",
-    giscus_repo_id = "",
-    giscus_category_id = "",
-    giscus_lang,
-  } = (document.querySelector("#giscus-meta") as HTMLAnchorElement).dataset;
+  let observer: MutationObserver | undefined;
 
-  function sendMessage(message: Object) {
-    const iframe = document.querySelector(
-      "iframe.giscus-frame"
-    ) as HTMLIFrameElement;
-    if (!iframe || !iframe.contentWindow) return;
-    iframe.contentWindow.postMessage({ giscus: message }, "https://giscus.app");
+  function currentTheme() {
+    return document.documentElement.dataset.theme === "dark"
+      ? "dark_dimmed"
+      : "light";
   }
 
-  function getCurrentTheme() {
-    const theme =
-      document.firstElementChild &&
-      document.firstElementChild.getAttribute("data-theme");
-    return theme;
-  }
+  function mountComments() {
+    observer?.disconnect();
+    const container = document.querySelector<HTMLElement>(".giscus");
+    if (!container || container.querySelector("script")) return;
 
-  function createGiscusScript() {
-    const container = document.querySelector("#main-content");
-    const theme = getCurrentTheme() == "light" ? "light" : "dark_dimmed";
-    let script = document.createElement("script");
+    const script = document.createElement("script");
     script.src = "https://giscus.app/client.js";
-    script.setAttribute("data-repo", giscus_repo);
-    script.setAttribute("data-repo-id", giscus_repo_id);
-    script.setAttribute("data-category", "Announcements");
-    script.setAttribute("data-category-id", giscus_category_id);
-    script.setAttribute("data-mapping", "og:title");
-    script.setAttribute("data-strict", "0");
-    script.setAttribute("data-reactions-enabled", "0");
-    script.setAttribute("data-emit-metadata", "0");
-    script.setAttribute("data-input-position", "top");
-    script.setAttribute("data-theme", theme);
-    script.setAttribute("data-lang", giscus_lang || "en");
-    script.setAttribute("data-loading", "lazy");
-    script.setAttribute("crossorigin", "anonymous");
+    const options = {
+      repo: container.dataset.repo!,
+      "repo-id": container.dataset.repoId!,
+      category: "Announcements",
+      "category-id": container.dataset.categoryId!,
+      mapping: "og:title",
+      strict: "0",
+      "reactions-enabled": "0",
+      "emit-metadata": "0",
+      "input-position": "top",
+      theme: currentTheme(),
+      lang: container.dataset.lang!,
+      loading: "lazy",
+    };
+    for (const [key, value] of Object.entries(options)) {
+      script.setAttribute(`data-${key}`, value);
+    }
+    script.crossOrigin = "anonymous";
     script.async = true;
-    container && container.appendChild(script);
-  }
+    container.appendChild(script);
 
-  function updateGiscusTheme() {
-    const theme = getCurrentTheme();
-    sendMessage({
-      setConfig: { theme: theme },
+    observer = new MutationObserver(() => {
+      container
+        .querySelector<HTMLIFrameElement>("iframe.giscus-frame")
+        ?.contentWindow?.postMessage(
+          { giscus: { setConfig: { theme: currentTheme() } } },
+          "https://giscus.app"
+        );
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
     });
   }
 
-  createGiscusScript();
-  document.querySelector("#theme-btn")?.addEventListener("click", () => {
-    const theme = getCurrentTheme();
-    sendMessage({
-      setConfig: { theme: theme == "light" ? "dark_dimmed" : "light" },
-    });
-    updateGiscusTheme();
-  });
-
-  document.addEventListener("astro:after-swap", () => {
-    // 移除旧的 giscus 容器
-    const giscusContainer = document.querySelector(".giscus");
-    if (giscusContainer) {
-      giscusContainer.remove();
-    }
-
-    // 移除旧的 script
-    const oldScript = document.querySelector(
-      'script[src="https://giscus.app/client.js"]'
-    );
-    if (oldScript) {
-      oldScript.remove();
-    }
-
-    // 重新创建 giscus script 并确保主题同步
-    createGiscusScript();
-    updateGiscusTheme();
-  });
+  document.addEventListener("astro:page-load", mountComments);
+  document.addEventListener("astro:before-swap", () => observer?.disconnect());
 </script>

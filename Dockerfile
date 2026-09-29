@@ -1,12 +1,17 @@
-# Base stage for building the static files
-FROM node:lts AS base
+FROM node:22.23.2-bookworm-slim AS build
 WORKDIR /app
-COPY package*.json ./
-RUN npm install
+RUN npm install --global pnpm@11.19.0
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
+RUN HUSKY=0 pnpm install --frozen-lockfile
 COPY . .
-RUN npm run build
+# Optional public build-time settings; use the same values as Vercel.
+ARG PUBLIC_GOOGLE_SITE_VERIFICATION
+ARG GISCUS_REPO
+ARG GISCUS_REPO_ID
+ARG GISCUS_CATEGORY_ID
+ARG GISCUS_lang=zh-CN
+RUN pnpm build
 
-# Runtime stage for serving the application
-FROM nginx:mainline-alpine-slim AS runtime
-COPY --from=base ./app/dist /usr/share/nginx/html
+FROM nginx:stable-alpine AS runtime
+COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 80

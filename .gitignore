@@ -33,3 +33,13 @@ pnpm-debug.log*
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+# Generated Pagefind index
+public/pagefind/
+
+# Local browser QA artifacts
+.playwright-cli/
+output/playwright/
+
+# Local pnpm cache
+.pnpm-store/

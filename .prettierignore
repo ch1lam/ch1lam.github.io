@@ -1,13 +1,14 @@
-# Ignore everything
-/*
+node_modules/
+dist/
+.astro/
+public/pagefind/
+pnpm-lock.yaml
+# Preserve authored Markdown and vendored assets verbatim.
+src/content/
+src/assets/fonts/
+CHANGELOG.md
+AstroPaper-lighthouse-score.svg
 
-# Except these files & folders
-!/src
-!/public
-!/.github
-!tsconfig.json
-!astro.config.ts
-!package.json
-!.prettierrc
-!eslint.config.mjs
-!README.md
+.playwright-cli/
+output/
+.pnpm-store/

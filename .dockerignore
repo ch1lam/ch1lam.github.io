@@ -1,8 +1,6 @@
-# Ignore Astro files
-*.astro
-
-# Ignore node_modules directory
+.git/
+.astro/
+.env*
 node_modules/
-
-# Ignore build output
 dist/
+public/pagefind/
