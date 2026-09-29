@@ -58,58 +58,54 @@ const homePath = getRelativeLocaleUrl(locale, "");
       </p>
       <p class="mt-2">我会在此网站分享我的心得体会、行业经验等。</p>
       <p class="mt-2">
-        可以通过查看 <LinkButton
+        可以通过查看{" "}
+        <LinkButton
           class="hover:text-accent underline decoration-dashed underline-offset-4"
-          href={getRelativeLocaleUrl(locale, "about")}>About</LinkButton
-        > 进一步了解我，或在以下社交网站上关注我。
+          href={getRelativeLocaleUrl(locale, "about")}
+        >
+          About
+        </LinkButton>{" "}
+        进一步了解我，或在以下社交网站上关注我。
       </p>
-      {
-        socials.length > 0 && (
-          <div class="mt-4 flex max-sm:flex-col sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">
-              {t.home.socialLinks}:
-            </div>
-            <Socials />
+      {socials.length > 0 && (
+        <div class="mt-4 flex max-sm:flex-col sm:items-center">
+          <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">
+            {t.home.socialLinks}:
           </div>
-        )
-      }
+          <Socials />
+        </div>
+      )}
     </section>
 
-    {
-      featuredPosts.length > 0 && (
-        <section
-          id="featured"
-          class:list={[
-            "pt-12 pb-6",
-            { "border-border border-b": recentPosts.length > 0 },
-          ]}
-        >
-          <h2 class="text-2xl font-semibold tracking-wide">
-            {t.home.featured}
-          </h2>
-          <ul>
-            {featuredPosts.map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
+    {featuredPosts.length > 0 && (
+      <section
+        id="featured"
+        class:list={[
+          "pt-12 pb-6",
+          { "border-border border-b": recentPosts.length > 0 },
+        ]}
+      >
+        <h2 class="text-2xl font-semibold tracking-wide">{t.home.featured}</h2>
+        <ul>
+          {featuredPosts.map(data => (
+            <Card variant="h3" {...data} />
+          ))}
+        </ul>
+      </section>
+    )}
 
-    {
-      recentPosts.length > 0 && (
-        <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">
-            {t.home.recentPosts}
-          </h2>
-          <ul>
-            {recentPosts.slice(0, postsConfig.perIndex).map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
+    {recentPosts.length > 0 && (
+      <section id="recent-posts" class="pt-12 pb-6">
+        <h2 class="text-2xl font-semibold tracking-wide">
+          {t.home.recentPosts}
+        </h2>
+        <ul>
+          {recentPosts.slice(0, postsConfig.perIndex).map(data => (
+            <Card variant="h3" {...data} />
+          ))}
+        </ul>
+      </section>
+    )}
 
     <div class="my-8 text-center">
       <LinkButton href={getRelativeLocaleUrl(locale, "posts")}>

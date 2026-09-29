@@ -7,7 +7,8 @@ Chilam 的静态博客：<https://tach.cc/>。
 
 ## 本地运行
 
-需要 Node.js 22.12+（`.nvmrc` 固定为 22.23.2）和 pnpm 11.19.0。
+推荐使用 `.nvmrc` 固定的 Node.js 22.23.2 和 pnpm 11.19.0。新版 lint 工具要求
+Node.js 22.22.3+（22.x）、24.16.0+（24.x）或 26.3.0+。
 
 ```sh
 nvm use

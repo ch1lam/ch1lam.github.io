@@ -5,19 +5,17 @@ const { GISCUS_REPO, GISCUS_REPO_ID, GISCUS_CATEGORY_ID, GISCUS_lang } =
 const enabled = GISCUS_REPO && GISCUS_REPO_ID && GISCUS_CATEGORY_ID;
 ---
 
-{
-  enabled && (
-    <section
-      class="giscus mt-10 w-full"
-      aria-label="评论"
-      data-pagefind-ignore
-      data-repo={GISCUS_REPO}
-      data-repo-id={GISCUS_REPO_ID}
-      data-category-id={GISCUS_CATEGORY_ID}
-      data-lang={GISCUS_lang || "zh-CN"}
-    />
-  )
-}
+{enabled && (
+  <section
+    class="giscus mt-10 w-full"
+    aria-label="评论"
+    data-pagefind-ignore
+    data-repo={GISCUS_REPO}
+    data-repo-id={GISCUS_REPO_ID}
+    data-category-id={GISCUS_CATEGORY_ID}
+    data-lang={GISCUS_lang || "zh-CN"}
+  />
+)}
 
 <script>
   let observer: MutationObserver | undefined;

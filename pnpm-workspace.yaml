@@ -1,4 +1,8 @@
 allowBuilds:
   esbuild: true
   sharp: true
-  "@vercel/speed-insights": false
+
+# Satori 0.33.5 pins fflate 0.7.3; 0.7.5 fixes GHSA-px8p-9vwx-vf98.
+# Remove this override once Satori updates its pinned dependency.
+overrides:
+  "fflate@>=0.7.0 <0.7.5": "^0.7.5"
